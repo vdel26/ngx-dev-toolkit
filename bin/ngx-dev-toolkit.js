@@ -30,29 +30,36 @@ catch (e) {
 var plan = new NginxPlan();
 
 plan.briefing({
-  debug: true,
   destinations: {
     'remote': {
       host: config.host,
       username: config.username,
       port: config.port || 22,
-      privateKey: config.privateKey
+      privateKey: config.privateKey,
+      remoteNginxPath: config.remoteNginxPath
     }
   }
 });
 
+// allowed commands
 switch (process.argv[2]) {
   case 'start':
-    plan.startNginx();
+    plan.nginxAction('start');
     break;
   case 'stop':
-    plan.stopNginx();
+    plan.nginxAction('stop');
     break;
   case 'copy':
     plan.copyConfig();
     break;
   case 'reload':
-    plan.reloadNginx();
+    plan.nginxAction('reload');
+    break;
+  case 'try':
+    plan.tryConfig();
+    break;
+  case 'ps':
+    plan.isRunning();
     break;
   default:
     console.log('Error: Invalid action');

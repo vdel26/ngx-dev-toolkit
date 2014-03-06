@@ -2,20 +2,17 @@
  * {
  *  // host of Nginx server
  *  "remoteHost": "",
- * 
+ *
  * // username of Nginx server
  *  "remoteUsername": "",
  *
  * // port of Nginx server
  *  "remotePort": "",
  *
- * // path to privateKey to connect to Nginx server if needed
+ * // path to private key to connect to Nginx server if needed
  *  "privateKey": "",
  *
- * // path where Nginx config files will be dropped
- *  "remotePath": "",
- *
- * // local path where Nginx config files are
- *  "localPath": ""
+ * // path to Nginx executable
+ *  "remoteNginxPath": ""
  * }
  */
