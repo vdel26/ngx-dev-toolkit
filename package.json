@@ -1,8 +1,12 @@
 {
-  "name": "nginx-deploy-config",
-  "version": "0.0.1",
+  "name": "ngxtoolkit",
+  "version": "0.1.0",
   "description": "Tools to make working with Nginx configs more bearable",
   "main": "index.js",
+  "preferGlobal": "true",
+  "bin": {
+    "ngxtoolkit": "./bin/ngx-dev-toolkit.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

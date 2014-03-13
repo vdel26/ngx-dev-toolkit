@@ -3,11 +3,11 @@ var Flightplan = require('flightplan'),
     util       = require('util'),
     fs         = require('fs');
 
-
 function NginxPlan () {
   Flightplan.call(this);
   this.tmpDir = '/nginx-config-tmp';
   this.running = false;
+  this.exclude = ['.json'];
 }
 util.inherits(NginxPlan, Flightplan);
 
@@ -59,7 +59,10 @@ NginxPlan.prototype.copyConfig = function () {
   this._getRemoteHome();
   this.local(function (local) {
     local.log('Copying files to remote Nginx');
-    var filesToCopy = fs.readdirSync(process.cwd());
+    var files = fs.readdirSync(process.cwd());
+    var filesToCopy = files.filter(function (filename) {
+      return this.exclude.indexOf(path.extname(filename)) === -1;
+    });
     var homeDir = path.join(this.remoteHome, this.tmpDir);
     local.transfer(filesToCopy, homeDir);
   }.bind(this));
